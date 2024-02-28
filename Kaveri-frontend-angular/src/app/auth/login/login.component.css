@@ -1,0 +1,36 @@
+/* Center the card horizontally and vertically */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Style the card */
+.login-card {
+  max-width: 400px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px;
+}
+
+/* Style the form inside the card */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Style the title of the card */
+.login-card mat-card-title {
+  margin-bottom: 20px; /* Add gap between title and content */
+  text-align: center; /* Center the title */
+}
+
+/* Make the inputs full-width */
+.full-width {
+  width: 100%;
+}

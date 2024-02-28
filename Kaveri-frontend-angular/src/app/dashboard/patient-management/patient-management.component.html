@@ -1,0 +1,63 @@
+<div class="container-fluid">
+  <div class="adminRoleHeadings">
+    <div class="row">
+      <div class="col-md-4">
+        <span>
+          <h2>Patient Details</h2>
+        </span>
+      </div>
+      <div class="col-md-8 col-lg-8">
+        <div class="adminRolesSearch">
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" id="adminRoleSearchInput" placeholder="Search"
+              aria-label="Search" (keyup)=" applyFilter($event)" autocomplete="off">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="adminRoleSearchButton">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+    <ng-container matColumnDef="fullName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Sl.No </th>
+      <td mat-cell *matCellDef="let element" style="width: 30%;"> {{element.fullName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+      <td mat-cell *matCellDef="let element" style="width: 30%;"> {{element.email}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef> Place </th>
+      <td mat-cell *matCellDef="let element" style="width: 25%;"> {{element.role | titlecase}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef> Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="d-flex">
+          <span *ngIf="!element.defaultAdmin">
+            <span *ngIf="!element.password">
+              <span class="emailIcon" matTooltipPosition="left" matTooltip="Send Mail"><i
+                  class="fas fa-envelope-square"></i></span>
+            </span>
+            <!-- <mat-icon (click)="sendEmailData($event,element)">  mail_outline</mat-icon></span> -->
+            <span matTooltipPosition="right" matTooltip="Delete"> <i class="fas fa-trash-alt ml-3"></i></span>
+          </span>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="9999">
+        No data found
+      </td>
+    </tr>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

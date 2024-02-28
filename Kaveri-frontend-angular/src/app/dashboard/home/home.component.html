@@ -1,0 +1,463 @@
+<!-- <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <mat-form-field>
+        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button color="primary" matStepperNext>Next</button>
+      </div>
+    </form>
+    <form>
+      <div class="form-group row">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="inputPassword">
+        </div>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <mat-form-field>
+        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+               required>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary" matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-stepper> -->
+
+
+
+
+<!-- parent-component.html -->
+
+<div class="container">
+  <div *ngIf="currentStep === 1">
+    <div class="mt-3">
+      <form [formGroup]="patientForm">
+        <div class="row row-cols-2">
+          <div class="col">
+            <div class="form-group row">
+              <label for="patientName" class="col-sm-4 col-form-label">Patient Name:</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="patientName" formControlName="patientName">
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group row">
+              <label for="billDate" class="col-sm-4 col-form-label">Bill Date:</label>
+              <div class="col-sm-8">
+                <input type="date" class="form-control" id="billDate" formControlName="billDate">
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col">
+            <div class="form-group row">
+              <label for="billNo" class="col-sm-4 col-form-label">Bill Number:</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="billNo" formControlName="billNo">
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group row">
+              <label for="dateOfAdmission" class="col-sm-4 col-form-label">Date Of Admission:</label>
+              <div class="col-sm-8">
+                <input type="date" class="form-control" id="dateOfAdmission" formControlName="dateOfAdmission">
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group row">
+              <label for="dateOfDischarge" class="col-sm-4 col-form-label">Date Of Discharge:</label>
+              <div class="col-sm-8">
+                <input type="date" class="form-control" id="dateOfDischarge" formControlName="dateOfDischarge">
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group row">
+              <label for="ipNo" class="col-sm-4 col-form-label">IP No:</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="ipNo" formControlName="ipNo">
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group row">
+              <label for="bplCardNo" class="col-sm-4 col-form-label">BPL No:</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="bplCardNo" formControlName="bplCardNo">
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group row">
+              <label for="refNo" class="col-sm-4 col-form-label">Ref No:</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="refNo" formControlName="refNo">
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group row">
+              <label for="address" class="col-sm-4 col-form-label">Address:</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="address" formControlName="address">
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group row">
+              <label for="age" class="col-sm-4 col-form-label">Age:</label>
+              <div class="col-sm-8">
+                <input type="number" class="form-control" id="age" formControlName="age">
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group row">
+              <label for="sex" class="col-sm-4 col-form-label">Sex:</label>
+              <div class="col-sm-8">
+                <select class="form-control" id="sex" formControlName="sex">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="female">Other</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group row">
+              <label for="department" class="col-sm-4 col-form-label">Department:</label>
+              <div class="col-sm-8">
+                <select class="form-control" id="department" formControlName="department">
+                  <option *ngFor="let dept of departments" [value]="dept.deptName">{{ dept.deptName }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group row">
+              <label for="doctor" class="col-sm-4 col-form-label">Doctor:</label>
+              <div class="col-sm-8">
+                <select class="form-control" id="doctor" (change)="onDoctorChange($event)"  formControlName="doctor">
+                  <option *ngFor="let doc of doctors" [value]="doc._id">{{ doc.doctorName }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group row">
+              <label for="taluk" class="col-sm-4 col-form-label">Taluk:</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="taluk" formControlName="taluk">
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group row">
+              <label for="district" class="col-sm-4 col-form-label">District:</label>
+              <div class="col-sm-8">
+                <select class="form-control" id="district" formControlName="district">
+                  <option *ngFor="let district of districts" [value]="district">{{ district }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group row">
+
+            </div>
+          </div>
+          <!--
+          <div formArrayName="packageCodes1">
+            <div *ngFor="let packageCodeGroup of packageCodes.controls; let i = index" [formGroupName]="i" class="col">
+              <div class="form-group row">
+                <label for="packageCode-{{i}}" class="col-sm-3 col-form-label">Package Code:</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" [id]="'packageCode-' + i" formControlName="packageCode">
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <!-- <button type="button" (click)="addPackageCodeControl()">Add Package Code</button> -->
+
+          <div class="col">
+            <div class="form-group row">
+              <label for="packageCode" class="col-sm-4 col-form-label">Package Code :</label>
+              <div class="col-sm-8">
+                <select class="form-control" id="packageCode" formControlName="packageCode"
+                  (change)="onPackageCodeChange($event)">
+                  <option *ngFor="let option of packageOptions" [value]="option.pkgCode">{{ option.pkgName }}</option>
+                </select>
+                <!-- <input type="text" class="form-control" id="packageCode" formControlName="packageCode"> -->
+                <table *ngIf="packages.length > 0">
+                  <thead>
+                    <tr>
+                      <th>Package Code</th>
+                      <th>Package Name</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let package of packages">
+                      <td>{{package.pkgCode}}</td>
+                      <td>{{package.pkgName}}</td>
+                    </tr>
+                    <!-- Additional rows would go here -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row">
+              <button mat-raised-button color="primary" (click)="addPkgCode()">Add</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="form-group row">
+            <label for="totalPackageCostAmount" class="col-sm-3 col-form-label">Total Package Cost Amount:</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="totalPackageCostAmount"
+                formControlName="totalPackageCostAmount">
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="form-group row">
+            <label for="totalClaimAmount" class="col-sm-3 col-form-label">Total Claim Amount:</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="totalClaimAmount" formControlName="totalClaimAmount">
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="currentStep === 2">
+    <div class="mt-3">
+      <form [formGroup]="patientForm">
+        <div class="row row-cols-1">
+          <div class="col">
+            <div class="form-group row">
+              <label for="dateOfSurgery" class="col-sm-3 col-form-label">Date Of Surgery:</label>
+              <div class="col-sm-3">
+                <input type="date" class="form-control" id="dateOfSurgery" formControlName="dateOfSurgery">
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group row">
+              <label for="preAuthIssueDate" class="col-sm-3 col-form-label">Pre Auth Issue Date:</label>
+              <div class="col-sm-3">
+                <input type="date" class="form-control" id="preAuthIssueDate" formControlName="preAuthIssueDate">
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group row">
+              <label for="travellingAllowance" class="col-sm-3 col-form-label">Travelling Allowance:</label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control" id="travellingAllowance" formControlName="travellingAllowance">
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group row">
+              <label for="amountCollected" class="col-sm-3 col-form-label">Amount Collected:</label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control" id="amountCollected" formControlName="amountCollected">
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group row">
+              <label for="amountRefund" class="col-sm-3 col-form-label">Amount Refund:</label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control" id="amountRefund" formControlName="amountRefund">
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group row">
+              <label for="dischargeMedicinesProvided" class="col-sm-3 col-form-label">Discharge Medicines
+                Provided:</label>
+              <div class="col-sm-9">
+                <input type="checkbox" class="form-check-input" id="dischargeMedicinesProvided"
+                  formControlName="dischargeMedicinesProvided">
+                <label class="form-check-label" for="dischargeMedicinesProvided">Yes</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group row">
+              <label for="freeFoodGiven" class="col-sm-3 col-form-label">Free Food Given:</label>
+              <div class="col-sm-9">
+                <input type="checkbox" class="form-check-input" id="freeFoodGiven" formControlName="freeFoodGiven">
+                <label class="form-check-label" for="freeFoodGiven">Yes</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group row">
+              <label for="ambulanceProvided" class="col-sm-3 col-form-label">Ambulance provided in case of
+                death:</label>
+              <div class="col-sm-9">
+                <input type="checkbox" class="form-check-input" id="ambulanceProvided"
+                  formControlName="ambulanceProvided">
+                <label class="form-check-label" for="dischargeMedicinesProvided">Yes</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group row">
+              <label for="patientFeedback" class="col-sm-3 col-form-label">Patient Feedback:</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="patientFeedback" formControlName="patientFeedback">
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group row">
+              <label for="complaints" class="col-sm-3 col-form-label">Complaints:</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="complaints" formControlName="complaints">
+              </div>
+            </div>
+          </div>
+
+          <!-- Add more rows for other form controls -->
+        </div>
+      </form>
+    </div>
+
+  </div>
+  <div *ngIf="currentStep === 3">
+
+    <div class="mt-3">
+      <form [formGroup]="patientForm">
+        <div class="form-group row">
+          <label for="otNote" class="col-sm-3 col-form-label">OT Note Enclosed:</label>
+          <div class="col-sm-9">
+            <input type="checkbox" class="form-check-input" id="otNote" formControlName="otNote">
+
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="dischargeSummaryEnclosed" class="col-sm-3 col-form-label">Discharge Summary Enclosed</label>
+          <div class="col-sm-9">
+            <input type="checkbox" class="form-check-input" id="dischargeSummaryEnclosed"
+              formControlName="dischargeSummaryEnclosed">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="postInvestigations" class="col-sm-3 col-form-label">Post of Investigations:</label>
+          <div class="col-sm-9">
+            <input type="checkbox" class="form-check-input" id="postInvestigations"
+              formControlName="postInvestigations">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="clinicalPhoto" class="col-sm-3 col-form-label">Clinical Photo showing Scar:</label>
+          <div class="col-sm-9">
+            <input type="checkbox" class="form-check-input" id="clinicalPhoto" formControlName="clinicalPhoto">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="remarks" class="col-sm-3 col-form-label">Remarks:</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="remarks" formControlName="remarks">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="arogyaMitraName" class="col-sm-3 col-form-label">Arogya Mitra Name:</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="arogyaMitraName" formControlName="arogyaMitraName">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="patientSignature" class="col-sm-3 col-form-label">Patient Signature Upload:</label>
+          <div class="col-sm-9">
+            <input type="file" class="form-control"  #fileInput id="patientSignature" formControlName="patientSignature">
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+<div class="controls row justify-content-end">
+  <div class="col-md-6">
+    <button mat-raised-button color="primary" (click)="goToPrevious()" *ngIf="!isFirstStep">Previous</button>
+  </div>
+  <div class="col-md-6">
+    <span *ngIf="isFirstStep">
+      <button mat-raised-button color="primary" (click)="goToNext()" [disabled]="!isFormValidUntilTotalClaimAmount"
+        *ngIf="!isLastStep">Next</button>
+
+    </span> <span *ngIf="!isFirstStep && !isLastStep">
+      <button mat-raised-button color="primary" (click)="goToNext()" [disabled]="!isFormValidUntilComplaints"
+        *ngIf="!isLastStep">Nextyt</button>
+
+    </span>
+    <!-- <button mat-raised-button color="primary" (click)="onSubmit()">Send PDF</button> -->
+
+    <button mat-raised-button color="primary" (click)="onSubmit()" *ngIf="isLastStep">Complete</button>
+    <!-- <button mat-raised-button color="primary" (click)="downloadFile()" *ngIf="isLastStep">Download PDF</button> -->
+
+  </div>
+</div>

@@ -1,0 +1,392 @@
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="package-tab" data-toggle="tab" href="#package" role="tab" aria-controls="package"
+      aria-selected="true">Package</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+      aria-selected="false">Users</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+      aria-selected="false">Department</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+      aria-selected="false">Doctors</a>
+  </li>
+</ul>
+
+
+
+
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade  show active" id="package" role="tabpanel" aria-labelledby="package-tab">
+    <div class="container">
+      <div class="mt-5">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#packageModalCenter">Add
+          Package</button>
+
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Sl No</th>
+              <th scope="col">Package Code</th>
+              <th scope="col">Package Name</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let pkg of packages;; index as i">
+              <td>{{i+1}}</td>
+              <td>{{pkg.pkgCode}}</td>
+              <td>{{pkg.pkgName}}</td>
+              <td>
+                <button type="button" class="btn btn-primary" (click)="editPackage(pkg)" data-toggle="modal"
+                  data-target="#packageModalCenter">Edit</button>&nbsp;
+                <span>
+                  <button type="button" class="btn btn-danger" (click)="deletePackage(pkg)">Delete</button>
+                </span>
+              </td>
+            </tr>
+            <tr *ngIf="!users">
+              No Data Found
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <div class="container">
+      <div>
+        <!-- <button type="button" (click)="openDialog()">Add User</button> -->
+      </div>
+      <div class="mt-5">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userModalCenter">Add
+          User</button>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Sl No</th>
+              <th scope="col">Name</th>
+              <th scope="col">User Name</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Role</th>
+              <th scope="col">Place</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let user of users; index as i">
+              <td>{{i+1}}</td>
+              <td>{{user.name}}</td>
+              <td>{{user.userName}}</td>
+              <td>{{user.phoneNo}}</td>
+              <td>{{user.role}}</td>
+              <td>{{user.place}}</td>
+              <td>
+                <button type="button" class="btn btn-primary" (click)="editUser(user)" data-toggle="modal"
+                  data-target="#userModalCenter">Edit</button>&nbsp;
+                <span>
+                  <button type="button" class="btn btn-danger" *ngIf="user._id !== userData._id"
+                    (click)="deleteUser(user)">Delete</button>
+                </span>
+              </td>
+            </tr>
+            <tr *ngIf="!users">
+              No Data Found
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+
+    <!-- Modal -->
+
+
+  </div>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    <div class="container">
+      <div class="mt-5">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deptModalCenter">Add
+          Department</button>
+
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Sl No</th>
+              <th scope="col">Department</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let dept of departments;; index as i">
+              <td>{{i+1}}</td>
+              <td>{{dept.deptName}}</td>
+              <td>
+                <button type="button" class="btn btn-primary" (click)="editDept(dept)" data-toggle="modal"
+                  data-target="#deptModalCenter">Edit</button>&nbsp;
+                <span>
+
+                  <button type="button" class="btn btn-danger" (click)="deleteUser(dept)">Delete</button>
+                </span>
+              </td>
+            </tr>
+            <tr *ngIf="!users">
+              No Data Found
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+    <div class="container">
+      <div class="mt-5">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#doctorModalCenter">Add
+          Doctor</button>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Sl No</th>
+              <th scope="col">Doctor</th>
+              <th scope="col">Department</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let dr of doctors;; index as i">
+              <td>{{i+1}}</td>
+              <td>{{dr.doctorName}}</td>
+              <td>{{dr.deptName}}</td>
+              <td>
+                <button type="button" class="btn btn-primary" (click)="editUser(dr)" data-toggle="modal"
+                  data-target="#doctorModalCenter">Edit</button>&nbsp;
+                <span>
+
+                  <button type="button" class="btn btn-danger" (click)="deleteUser(dr)">Delete</button>
+                </span>
+              </td>
+            </tr>
+            <tr *ngIf="!users">
+              No Data Found
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+
+
+
+<!-- package Modal -->
+
+
+<div class="modal fade" id="packageModalCenter" tabindex="1" role="dialog" aria-labelledby="packageModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="packageModalCenterTitle">Package Details</h5>
+        <button type="button" class="close" data-dismiss="modal" (click)="closeModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-5">
+          <form [formGroup]="packageForm">
+            <div class="row">
+              <div class="col">
+                <input type="text" class="form-control" formControlName="pkgCode" placeholder="Package Code">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" formControlName="pkgName" placeholder="Package Name">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()" >Close</button>
+        <button type="button" class="btn btn-primary" [disabled]="packageForm.invalid" (click)="savePackage()">Save
+          changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- user Modal -->
+
+
+<div class="modal fade" id="userModalCenter" tabindex="1" role="dialog" aria-labelledby="userModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="userModalCenterTitle">User Details</h5>
+        <button type="button" class="close" data-dismiss="modal" (click)="closeModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body m-4">
+        <form [formGroup]="userForm">
+
+          <div class="row row-cols-2">
+            <div class="col">
+              <div class="form-group row">
+                <label for="name" class="col-sm-4 col-form-label">Name:</label>
+                <input type="text" class="form-control" formControlName="name" placeholder="Name">
+              </div>
+            </div>
+
+
+            <div class="col">
+              <div class="form-group row">
+                <label for="userName" class="col-sm-4 col-form-label">User Name:</label>
+                <input type="text" class="form-control" formControlName="userName" placeholder="userName">
+
+              </div>
+            </div>
+
+
+            <div class="col">
+              <div class="form-group row">
+                <label for="phoneNo" class="col-sm-4 col-form-label">Phone No:</label>
+                <input type="number" class="form-control" formControlName="phoneNo" placeholder="Phone No">
+              </div>
+            </div>
+
+
+            <div class="col">
+              <div class="form-group row">
+                <label for="role" class="col-sm-4 col-form-label">Role:</label>
+                <select class="form-control" id="role" formControlName="role">
+                  <option value="user">User</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+            </div>
+
+
+            <div class="col">
+              <div class="form-group row">
+                <label for="password" class="col-sm-4 col-form-label">Password:</label>
+                <input type="text" class="form-control" formControlName="password" placeholder="password">
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="form-group row">
+                <label for="password" class="col-sm-4 col-form-label">Place:</label>
+                <input type="text" class="form-control" formControlName="place" placeholder="Place">
+              </div>
+            </div>
+
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="saveUserData()"  [disabled]="!userForm.valid">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- doctor Modal -->
+
+
+<div class="modal fade" id="doctorModalCenter" tabindex="1" role="dialog" aria-labelledby="doctorModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="doctorModalCenterTitle">Doctor Details</h5>
+        <button type="button" class="close" data-dismiss="modal" (click)="closeModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="doctorForm">
+          <div class="row">
+            <div class="col">
+              <input type="text" class="form-control" formControlName="doctorName" placeholder="Doctor Name">
+            </div>
+            <div class="col">
+              <select class="form-control" id="deptId" formControlName="deptId">
+                <option *ngFor="let dept of departments" [value]="dept._id">{{ dept.deptName }}</option>
+              </select>
+            </div>
+            <div class="col">
+              <input type="file"   #fileInput class="form-control" formControlName="doctorSignature" placeholder="Department Name">
+            </div>
+            <!-- <div class="col">
+              <button type="button" class="btn btn-primary" >Save</button>
+            </div> -->
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="saveDoctor()"  [disabled]="!doctorForm.valid">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Dept Modal -->
+
+
+<div class="modal fade" id="deptModalCenter" tabindex="1" role="dialog" aria-labelledby="deptModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deptModalCenterTitle">Department Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-5">
+          <form [formGroup]="deptForm">
+            <div class="row">
+              <div class="col">
+                <input type="text" class="form-control" formControlName="deptName" placeholder="Department Name">
+              </div>
+              <!-- <div class="col">
+                <button type="button" class="btn btn-primary" >Save</button>
+              </div> -->
+            </div>
+          </form>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="saveDepartment()" [disabled]="!deptForm.valid">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

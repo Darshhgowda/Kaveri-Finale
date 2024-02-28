@@ -1,0 +1,32 @@
+:host{
+  display: flex;
+  flex-direction: column;
+  height: 98%;
+}
+mat-drawer{
+  width:260px;
+  background-color: #ffffff;
+  color:black;
+  z-index: 1 !important;
+}
+mat-drawer-container{
+  height: 100%;
+
+}
+:host ::ng-deep.mat-drawer-inner-container {
+  overflow: hidden;
+}
+
+.show {
+ width: 260px;
+}
+
+.hide {
+  width: 0px;
+}
+.shows{
+  margin-left: 260px !important;
+}
+.hides{
+  margin-left: 0px !important;
+}

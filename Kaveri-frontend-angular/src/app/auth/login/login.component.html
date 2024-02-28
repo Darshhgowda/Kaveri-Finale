@@ -1,0 +1,26 @@
+<section>
+  <button mat-raised-button color="primary" (click)="onSubmit()">Login</button>
+</section>
+
+<div class="login-container">
+  <mat-card class="login-card">
+
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form class="login-form"  [formGroup]="loginForm">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Username" type="text"  formControlName="userName">
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Password" type="password"  formControlName="password">
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="loginFormSubmit()" class="full-width">Login</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

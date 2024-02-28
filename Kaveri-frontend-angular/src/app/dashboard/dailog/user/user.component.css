@@ -1,0 +1,22 @@
+label{
+  display: block;
+  margin-bottom: 5px;
+}
+:host::ng-deep.mat-form-field-infix {
+  border-top: 0px solid transparent !important;
+}
+:host::ng-deep.mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 1em 0 0.8em 0;
+}
+.submit{
+  background-color: #FFCA27;
+  border: 1px solid #DCAE22;
+  margin-left: 8px;
+}
+.cancel{
+  border: 1px solid #313131;
+  margin-left: 8px;
+}
+mat-form-field{
+  width: 100%;
+}

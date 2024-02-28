@@ -1,0 +1,4 @@
+.centered-text {
+  text-align: center; /* Center text horizontally in the div */
+  margin: 0 auto; /* Optional: Center the div itself if it doesn't take full width */
+}

@@ -1,0 +1,81 @@
+<h1 mat-dialog-title>Add new user</h1>
+<div mat-dialog-content>
+  <form [formGroup]="adminForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-6">
+        <label>Name</label>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <input matInput placeholder="Enter Name" formControlName="name">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <label>Mobile Number</label>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <input matInput placeholder="Enter mobile number" formControlName="phoneNo">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <label>E-mail ID</label>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <input *ngIf="editData" readonly matInput placeholder="Enter E-mail ID" formControlName="emailId">
+          <input *ngIf="!editData" matInput placeholder="Enter E-mail ID" formControlName="emailId">
+
+        </mat-form-field>
+      </div>
+      <div *ngIf="!editData" class="col-md-6">
+        <label>Password</label>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <input matInput placeholder="Enter password" formControlName="password">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="access mt-2">
+      <h4>Access</h4>
+      <div class="checkbox mt-3">
+        <div class="row">
+          <div class="col-md-4">
+            <mat-checkbox class="example-margin" formControlName="dashboardAccess">Dashboard</mat-checkbox>
+          </div>
+          <div class="col-md-4">
+            <mat-checkbox class="example-margin" formControlName="userAccess">Users</mat-checkbox>
+          </div>
+          <div class="col-md-4">
+            <mat-checkbox class="example-margin" formControlName="orderAccess">Orders</mat-checkbox>
+          </div>
+          <div class="col-md-4">
+            <mat-checkbox class="example-margin" formControlName="contractorAccess">Contractor</mat-checkbox>
+          </div>
+          <div class="col-md-4">
+            <mat-checkbox class="example-margin" formControlName="machineAccess">Machine</mat-checkbox>
+          </div>
+          <div class="col-md-4">
+            <mat-checkbox class="example-margin" formControlName="paymentAccess">Revenue</mat-checkbox>
+          </div>
+          <div class="col-md-4">
+            <mat-checkbox class="example-margin" formControlName="biddingAccess">Bidding</mat-checkbox>
+          </div>
+          <div class="col-md-4">
+            <mat-checkbox class="example-margin" formControlName="settingAccess">Settings</mat-checkbox>
+          </div>
+          <div class="col-md-4">
+            <mat-checkbox class="example-margin" formControlName="versionAccess">Version</mat-checkbox>
+          </div>
+          <div class="col-md-4">
+            <mat-checkbox class="example-margin" formControlName="notificationAccess">Notification</mat-checkbox>
+          </div>
+          <div class="col-md-4">
+            <mat-checkbox class="example-margin" formControlName="userManagementAccess">User Management</mat-checkbox>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="float-right">
+        <button class="cancel" mat-button mat-dialog-close>Cancel</button>
+        <button type="submit" [disabled]="adminForm.invalid" class="submit" mat-button>Submit</button>
+      </div>
+
+    </div>
+
+  </form>
+</div>
